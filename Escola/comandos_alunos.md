@@ -305,11 +305,12 @@ SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alu
 
 -- 13ª Digitação (SQL para criar a consulta acima)
 SELECT cursos.titulo AS "Matéria", 
-COUNT(alunos.curso.id) AS "QTD Alunos"
+COUNT(alunos.curso_id) AS "QTD Alunos"
 FROM alunos
 INNER JOIN cursos
 ON alunos.curso_id = cursos.id
-ORDER BY COUNT(alunos.curso.id) DESC;
+GROUP BY Matéria
+ORDER BY COUNT(alunos.curso_id) DESC;
 
 
 
@@ -330,6 +331,10 @@ SELECT alunos.nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segu
 ```sql
 
 -- 15ª Digitação (SQL para criar a consulta acima)
+UPDATE cursos   
+SET name = 'Adobe XD', hours = 15
+WHERE name = 'Figma' AND hours = 10;
+
 
 ```
 ![Relatório 11](resultados_alunos/relatorio11.jpg)
@@ -351,6 +356,9 @@ DELETE FROM alunos WHERE nome = 'Mário Calore' AND curso_id = 3;
 ```sql
 
 -- 17ª Digitação (SQL para criar a consulta acima)
+SELECT alunos.nome, cursos.titulo AS titulo from alunos INNER JOIN cursos
+ON alunos.curso_id = cursos.id
+GROUP BY nome ORDER BY nome;
 
 ```
 ![Relatório 13](resultados_alunos/relatorio13.jpg)
@@ -380,6 +388,11 @@ ROUND(primeira_nota + segunda_nota)/ 2 AS "Média das notas" FROM alunos WHERE (
 ```sql
 
 -- 20ª Digitação (SQL para criar a consulta acima)
+SELECT alunos.nome, primeira_nota, segunda_nota, 
+ROUND(primeira_nota + segunda_nota)/ 2 
+AS "Média das notas" 
+FROM alunos 
+WHERE ((primeira_nota + segunda_nota) / 2) <= 7;
 
 ```
 ![Desafio 3](resultados_alunos/desafio3.jpg)
